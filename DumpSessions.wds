@@ -1,0 +1,28 @@
+$$
+$$ Dumps all sessions on the heap
+$$
+$$
+$$ Written by: Tess
+$$
+$$ Run as: $><c:\tools\extensions\DumpSessions.wds
+$$
+
+$$ CLEAR ALL ALIASES (VARIABLES)
+$$ ----------------------------------------------------------------------------------
+ad /q *
+
+r @$t0=0;
+r @$t1=0;
+
+$$ GET ALL SESSION ITEMS
+.foreach (CurrentSession {!dumpheap -type System.Web.SessionState.InProcSessionState -short}){
+    $$ Increment # of sessions
+    r @$t0 = @$t0+1
+
+    .printf /D "Session Address:\t<?dml?><exec cmd=\"$$>a< c:\\tools\\extensions\\DumpSessionVar.wdl ${CurrentSession}\">${CurrentSession}</exec>\n";
+    .printf "Session Timeout:\t%d\n", poi(${CurrentSession}+0xc);
+    .foreach /pS 2 /ps 99 (token {!objsize ${CurrentSession}}){.printf "Session Size:\t${token} bytes\n"}
+    .printf "_______________________________________________\n";
+}
+
+.printf "Number of Sessions: %d\n\n\n\n\n\n\n\n\n", @$t0;

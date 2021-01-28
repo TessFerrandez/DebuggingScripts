@@ -1,0 +1,36 @@
+$$
+$$ Dumps details of a particular session
+$$
+$$
+$$ Written by: Tess
+$$
+$$ Run as: $$>a<c:\tools\extensions\DumpSessionVar.wds SessionAddress
+$$
+
+.printf "Session:\t\t${$arg1}\n";
+.foreach /pS 2 /ps 99 (token {!objsize ${$arg1}}){.printf "Session Size:\t${token} bytes\n"}
+
+$$ Number of session variables
+r @$t0 = poi(poi(poi(${$arg1}+0x4)+0x4)+0xc);
+
+
+.for(r @$t1=0; @$t1 < @$t0; r @$t1=@$t1+1){
+    .printf "\n================================================\n"
+    .printf "Session Variable\n"
+    .printf "================================================\n"
+
+    $$ NameObject Entry (actual session variable)
+    r @$t2 = poi(poi(poi(poi(${$arg1}+0x4)+0x4)+0x4)+0x8+0x4*(@$t1+1));
+    $$ Size
+    .foreach /pS 2 /ps 99 (token {!objsize @$t2}){.printf "Sessionvar Size:\t${token} bytes\n"}
+    $$ Key
+    .foreach /pS 5 (tk {.foreach /pS 9 (token {!do -nofields poi(@$t2+0x4)}){.printf "${token} "}}) {
+        .printf /D "Session Key:\t<?dml?><col fg=\"emphfg\">${tk}</col>\n"
+    };
+    $$ Value
+    .printf "Session Variable:\t%p\n****\n", poi(@$t2+0x8);
+    !do poi(@$t2+0x8)
+}
+
+.printf "\n\n\n\n\n\n\n\n\n";
+ad /q *

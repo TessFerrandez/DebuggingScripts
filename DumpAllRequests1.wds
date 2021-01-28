@@ -1,0 +1,133 @@
+$$
+$$ Dumps all recent requests (all HttpContexts on heap)
+$$
+$$
+$$ Written by: Tess
+$$
+$$ Run as: $><c:\tools\extensions\DumpRequests2.txt
+$$
+$$ For System.Web.dll 2.0.50727.42
+
+$$ CLEAR ALL ALIASES (VARIABLES)
+$$ ---------------------------------------------------------------------------------- 
+ad /q *
+
+$$ PRINT DUMP TIME FOR COMPARISON
+$$ ---------------------------------------------------------------------------------- 
+.time
+
+$$ PRINT HEADER
+$$ ---------------------------------------------------------------------------------- 
+.printf "\nHttpContext\tStartTime\t\t\tTimeOut (sec)\tHttpResponse\tCompleted\tReturnCode\tHttpRequest\tRequestType"
+.printf "\tURL+QueryString\n"
+.printf "=========================================================================================================="
+.printf "==============================="
+
+$$ LOOP THROUGH ALL HTTP CONTEXTS THAT ARE STILL ON THE HEAP 
+$$ ---------------------------------------------------------------------------------- 
+.foreach (hc {!dumpheap -type System.Web.HttpContext -short})
+{
+	.printf "\n";
+
+$$ DISPLAY CONTEXT WITH DML LINK
+$$ ---------------------------------------------------------------------------------- 
+	.printf /D "<?dml?><exec cmd=\"!do ${hc}\">${hc}</exec>\t";
+
+$$ START TIME = CONTEXT->WR->_STARTTIME ((CONTEXT+0X38)+0X4)
+$$ TICKCOUNT IS A QUADWORD AT THE START OF _STARTTIME, THE &0x3FFFFFFFFFFFFFFF IS USED TO REMOVE THE TWO FIRST BYTES 
+$$ (CALENDAR TYPE)
+$$ .FOREACH COULD ONLY HANDLE AN INITIAL SKIP OF 9 THEREFORE I HAVE NESTED .FOREACH, SHOULD REALLY BE 
+$$ .FOREACH /PS 22, 23 AND 24
+$$ ---------------------------------------------------------------------------------- 
+	.foreach /pS 1 /ps 99 (tick {dq poi(${hc}+0x38)+0x4 l1}){
+		.foreach /pS 3 /ps 99 (month {
+			.foreach /pS 9 (tk2 {
+				.foreach /pS 9 (tk {
+					.formats ${tick}&0x3FFFFFFFFFFFFFFF}){
+						.printf "${tk} "}}){
+						.printf "${tk2} "}}){
+						.printf "${month} "}
+		.foreach /pS 4 /ps 99 (day {
+			.foreach /pS 9 (tk2 {
+				.foreach /pS 9 (tk {
+					.formats ${tick}&0x3FFFFFFFFFFFFFFF}){
+						.printf "${tk} "}}){
+						.printf "${tk2} "}}){
+						.printf "${day} "}
+		.foreach /pS 5 /ps 99 (longtime {
+			.foreach /pS 9 (tk2 {
+				.foreach /pS 9 (tk {
+					.formats ${tick}&0x3FFFFFFFFFFFFFFF}){
+						.printf "${tk} "}}){
+						.printf "${tk2} "}}){
+						.printf "${longtime}\t"}
+	};
+
+$$ TIMEOUT = CONTEXT->TIMEOUT (CONTEXT+0X8C) AND 1 TICK = 100 NS
+$$ ---------------------------------------------------------------------------------- 
+	.foreach /pS 1 /ps 99 (token {dq ${hc}+0x8c l1}){
+		.foreach /pS 2 /ps 99 (tk {?${token}/0n10000000}){
+			.if (${tk} > 9999){
+				.printf "${tk}\t\t"
+			}
+			.else {
+				.printf "${tk}\t\t\t"
+			}
+		}
+	};
+
+$$ DISPLAY RESPONSE WITH DML LINK (CONTEXT+0X14)
+$$ ---------------------------------------------------------------------------------- 
+	.foreach /pS 4 (token {?poi(${hc}+0x14)}){
+		.printf /D "<?dml?><exec cmd=\"!do ${token}\">${token}</exec>\t\t"
+	};
+
+$$ COMPLETED = CONTEXT->RESPONSE->COMPLETED ((CONTEXT+0X14)+59)
+$$ ---------------------------------------------------------------------------------- 
+	.foreach /pS 1 (token {dd poi(${hc}+0x14)+59 l1}){
+		.if (${token} == 0) {
+			.printf "No\t\t"
+		}
+		.else {
+			.printf "Yes\t\t"
+		}
+	};
+
+$$ RETURNCODE = CONTEXT->RESPONSE->_STATUSCODE ((CONTEXT+0X14)+50)
+$$ ---------------------------------------------------------------------------------- 
+	.foreach /pS 2 /ps 99 (token {?poi(poi(${hc}+0x14)+50)}){
+		.printf "${token}\t\t"
+	};
+
+$$ DISPLAY REQUEST WITH DML LINK (CONTEXT+0X10)
+$$ ---------------------------------------------------------------------------------- 
+	.foreach /pS 4 (token {?poi(${hc}+0x10)}){
+		.printf /D "<?dml?><exec cmd=\"!do ${token}\">${token}</exec>\t"
+	};
+
+$$ HTTPVERB = CONTEXT->REQUEST->_HTTPVERB ((CONTEXT+0X10)+9C)
+$$ ---------------------------------------------------------------------------------- 
+	.foreach /pS 1 (token {dd poi(${hc}+0x10)+9C l1}){
+		.if (${token} == 2) {
+			.printf "GET\t\t"
+		}
+		.elsif (${token} == 5) {
+			.printf "POST\t\t"
+		}
+		.else {
+			.printf "Unparsed\t\t"
+		}
+	};
+
+$$ PATH = CONTEXT->REQUEST->PATH->VIRTUALPATH (((CONTEXT+0X10)+14)+8)
+$$ ---------------------------------------------------------------------------------- 
+	.foreach /pS 5 (tk {.foreach /pS 9 (token {!do -nofields poi(poi(poi(${hc}+0x10)+14)+8)}){.printf "${token} "}}) {
+		.printf "${tk}"
+	};
+
+$$ QUERYSTRING = CONTEXT->REQUEST->QUERYSTRING ((CONTEXT+0X10)+28)
+$$ ---------------------------------------------------------------------------------- 
+	.foreach /pS 5 (tk {.foreach /pS 9 (token {!do -nofields poi(poi(${hc}+0x10)+28)}){.printf "${token} "}}) {
+		.printf "?${tk}"
+	};
+}

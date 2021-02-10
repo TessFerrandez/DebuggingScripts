@@ -1,0 +1,7 @@
+C:\Users\tferrand\Documents\Visual Studio 2008\Projects\CurrentRequestsUI\CurrentRequestsUI\bin\Debug\CurrentRequestsUI.dll
+C:\Users\tferrand\Documents\Visual Studio 2008\Projects\CurrentRequestsUI\CurrentRequestsUI\bin\Debug\CurrentRequestsUI.pdb
+C:\Users\tferrand\Documents\Visual Studio 2008\Projects\CurrentRequestsUI\CurrentRequestsUI\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\tferrand\Documents\Visual Studio 2008\Projects\CurrentRequestsUI\CurrentRequestsUI\obj\Debug\CurrentRequestsUI.dll
+C:\Users\tferrand\Documents\Visual Studio 2008\Projects\CurrentRequestsUI\CurrentRequestsUI\obj\Debug\CurrentRequestsUI.pdb
+C:\Users\tferrand\Documents\Visual Studio 2008\Projects\CurrentRequestsUI\CurrentRequestsUI\obj\Debug\CurrentRequestsUI.RequestPage.resources
+C:\Users\tferrand\Documents\Visual Studio 2008\Projects\CurrentRequestsUI\CurrentRequestsUI\obj\Debug\CurrentRequestsUI.csproj.GenerateResource.Cache

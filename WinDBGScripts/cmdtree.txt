@@ -1,0 +1,42 @@
+windbg ANSI Command Tree 1.0
+title {"Common Commands"}
+body
+{"Common Commands"}
+ {"Load sos"} {".loadby sos coreclr"}
+ {"Information"}
+  {"Time of dump"} {".time"}
+  {"Process being debugged"} {"|"}
+  {"Dump Location"} {"||"}
+  {"Create server on port 9999"} {".server tcp:port=9999"}
+  {"Show remote connections"} {".clients"}
+  {"Process Environment Block"} {"!peb"}
+ {"Logging"}
+  {"Open Log"} {".logopen /t /u /d"}
+  {"Close Log"} {".logclose"}
+ {"Modules"}
+  {"All Modules"} {"lm D sm"}
+  {"Loaded Modules"} {"lmo D sm"}
+  {"Loaded Modules (verbose)"} {"lmvo D sm"}
+  {"Modules w/o symbols"} {"lme D sm"}
+  {".net Modules"} {"!dumpdomain"}
+ {"Threads"}
+  {".net Threads"} {"!threads"}
+  {"Native Threads"} {"~"}
+  {"Threadpool"} {"!threadpool"}
+  {"Sync Blocks"} {"!syncblk"}
+ {"Stacks"}
+  {"Current .net stack"} {"!clrstack"}
+  {"Objects on the .net stack"} {"!dso"}
+  {"All .net stacks"} {"~* e !clrstack"}
+  {"Current native stack"} {"kb 2000"}
+  {"All native stacks"} {"~* kb 2000"}
+  {"Raw stack"} {"!dumpstack"}
+ {"Memory"}
+  {"Dump heaps"} {"!heap -a"}
+  {"Dump all .net objects"} {"!dumpheap -stat"}
+  {"Dump all large .net objects"} {"!dumpheap -min 0n85000"}
+  {"Show .net heap info"} {"!eeheap -gc"}
+ {"Automated Task"}
+  {"!analyze"} {"!analyze -v"}
+  {"Locks"} {"!ntsdexts.locks"}
+  {"CPU time for User and Kernel Mode"} {"!runaway 7"}

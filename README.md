@@ -10,3 +10,4 @@ See these blog posts for more info on the scripts and tools
 - [DumpAllRequests](https://tessferrandez.github.io/debugging/aspnet/script/2007/09/12/debugging-script-dumping-out-current-and-recent-aspnet-requests.html)
 - [DumpSessions](https://tessferrandez.github.io/debugging/aspnet/script/2007/09/18/debugging-script-dumping-out-aspnet-session-contents.html)
 - [CMDTree](https://tessferrandez.github.io/debugging/dotnet/2008/09/18/making-it-easier-to-debug-net-dumps-using-cmdtree.html)
+- [Memory Display - Visualize the address space (32 bit only)](https://tessferrandez.github.io/debugging/dotnet/crash/2009/04/14/show-me-the-memory.html)

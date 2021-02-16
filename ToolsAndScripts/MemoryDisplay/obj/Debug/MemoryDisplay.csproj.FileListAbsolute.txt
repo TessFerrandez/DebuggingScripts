@@ -1,0 +1,10 @@
+C:\Tess\source\MemoryDisplay\MemoryDisplay\bin\Debug\MemoryDisplay.exe.config
+C:\Tess\source\MemoryDisplay\MemoryDisplay\bin\Debug\MemoryDisplay.exe
+C:\Tess\source\MemoryDisplay\MemoryDisplay\bin\Debug\MemoryDisplay.pdb
+C:\Tess\source\MemoryDisplay\MemoryDisplay\obj\Debug\MemoryDisplay.csprojAssemblyReference.cache
+C:\Tess\source\MemoryDisplay\MemoryDisplay\obj\Debug\MemoryDisplay.Main.resources
+C:\Tess\source\MemoryDisplay\MemoryDisplay\obj\Debug\MemoryDisplay.Properties.Resources.resources
+C:\Tess\source\MemoryDisplay\MemoryDisplay\obj\Debug\MemoryDisplay.csproj.GenerateResource.cache
+C:\Tess\source\MemoryDisplay\MemoryDisplay\obj\Debug\MemoryDisplay.csproj.CoreCompileInputs.cache
+C:\Tess\source\MemoryDisplay\MemoryDisplay\obj\Debug\MemoryDisplay.exe
+C:\Tess\source\MemoryDisplay\MemoryDisplay\obj\Debug\MemoryDisplay.pdb

@@ -1,0 +1,32 @@
+0:000> !eeheap -gc
+Number of GC Heaps: 2
+------------------------------
+Heap 0 (001aa470)
+generation 0 starts at 0x227ae8f8
+generation 1 starts at 0x21a28ac8
+generation 2 starts at 0x02d90038
+ephemeral segment allocation context: none
+ segment    begin allocated     size
+02d90000 02d90038  06d83540 0x03ff3508(67056904)
+16fd0000 16fd0038  1a894fb4 0x038c4f7c(59527036)
+1efd0000 1efd0038  22a1d074 0x03a4d03c(61132860)
+Large object heap starts at 0x0ad90038
+ segment    begin allocated     size
+0ad90000 0ad90038  0ada2b68 0x00012b30(76592)
+Heap Size  0xb317ff0(187793392)
+------------------------------
+Heap 1 (001ab438)
+generation 0 starts at 0x2697d6c8
+generation 1 starts at 0x25b2fa80
+generation 2 starts at 0x06d90038
+ephemeral segment allocation context: none
+ segment    begin allocated     size
+06d90000 06d90038  0ad8fa80 0x03fffa48(67107400)
+1afd0000 1afd0038  1ea4d830 0x03a7d7f8(61331448)
+22fd0000 22fd0038  26c2a974 0x03c5a93c(63285564)
+Large object heap starts at 0x0cd90038
+ segment    begin allocated     size
+0cd90000 0cd90038  0cd90048 0x00000010(16)
+Heap Size  0xb6d7b8c(191724428)
+------------------------------
+GC Heap Size  0x169efb7c(379517820)

@@ -8,7 +8,7 @@ Tools and Scripts
 
 - [Current Requests UI](https://tessferrandez.github.io/debugging/dotnet/2008/08/28/creating-a-ui-module-for-iis7-to-watch-current-requests.html)
 - [tinyget](https://tessferrandez.github.io/debugging/dotnet/labs/2008/02/04/debugging-demos-setup-instructions.html)
-- [Memory Display - Visualize the address space (32 bit only)](https://tessferrandez.github.io/debugging/dotnet/crash/2009/04/14/show-me-the-memory.html)
+- [Memory Display - Visualize the address space (32 bit only)](https://tessferrandez.github.io/debugging/dotnet/memory/2009/04/23/show-me-the-memory.html)
 
 WinDBG Scripts
 

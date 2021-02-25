@@ -13,8 +13,8 @@ See these blog posts for more info on the scripts and tools
 
 ### Tools by other authors
 
-- [GCRootsToDgml] - Chris Lovett - tool that takes GCRoot output and transforms it to DGML
-- [VGCRoot] - Mohammed Mahmoud - Extension for transforming GCRoot output to a DGML document
+- [GCRootsToDgml](https://tessferrandez.github.io/debugging/dotnet/memory/2010/03/03/tool-for-generating-dgml-graphs.html) - Chris Lovett - tool that takes GCRoot output and transforms it to DGML
+- [VGCRoot](https://tessferrandez.github.io/debugging/dotnet/memory/2010/03/03/tool-for-generating-dgml-graphs.html) - Mohammed Mahmoud - Extension for transforming GCRoot output to a DGML document
 
 ## WinDBG Scripts
 
